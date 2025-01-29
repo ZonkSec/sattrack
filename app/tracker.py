@@ -391,11 +391,11 @@ el_mode_pins = 25, 26, 27
 el_a4988_nema = RpiMotorLib.A4988Nema(el_direction_pin, el_step_pin, el_mode_pins, "A4988")
 
 #full steps per rot = 200
-#1/8 stepping steps per rot = 1600
+#1/16 stepping steps per rot = 3200
 #az gears 10:43 == 1:4.3
-#az quater stepping full rotate steps = 6880
-#az degs to steps = 6880/360 = 19.1111111
-steps_per_azDeg = 6880/360
+#az quater stepping full rotate steps = 13760
+#az degs to steps = 13760/360 = 38.2222222222
+steps_per_azDeg = 13760/360
 
 #full steps per rot = 200
 #half stepping steps per rot = 800
@@ -424,8 +424,8 @@ buzz(196*2,0.2)
 
 def thread_move_steps(az_direction,az_steps,el_direction,el_steps):
   with concurrent.futures.ThreadPoolExecutor() as executor:
-          az_steptype = "1/8"
-          az_stepdelay = 0.002
+          az_steptype = "1/16"
+          az_stepdelay = 0.0008
           az_initialdelay = 0.05
           el_steptype = "1/4"
           el_stepdelay = 0.0005
@@ -603,13 +603,6 @@ def tracker(requested_sat):
         buzz(1000,0.1)
         buzz(500,0.1)
         buzz(1000,0.1)
-      
-      if sat_status == "down" and last_sat_status == "up":
-         buzz(1000,0.1)
-         buzz(500,0.1)
-         buzz(1000,0.1)
-         print("sat has set. stop tracking.")
-         handler()
          
       difference = sat_to_track - location
       topocentric = difference.at(ts.utc(ts.now().utc_datetime() + timedelta(seconds=2))) #lead the sat a bit
@@ -622,11 +615,11 @@ def tracker(requested_sat):
       print(f'az_steps: {az_steps}')
       
       desired_el_pos = alt.degrees
-      
+      if desired_el_pos < 0 and current_el_pos > 0:
+         desired_el_pos = 0
       el_steps,el_direction = el_deg_to_steps_dir(desired_el_pos)
       print(f'el_steps: {el_steps}')
-        
-      
+
       thread_move_steps(az_direction,az_steps,el_direction,el_steps)
       if az_steps > 0:
         current_az_pos = desired_az_pos
