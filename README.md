@@ -1,4 +1,4 @@
-# sattrack
+# zonksec SatTrack
 DIY Satellite Tracker for Ham Radio
 * For [Arrow II Sat Antenna](https://www.arrowantennas.com/arrowii/146-437.html)
 * improved 3D printed parts | [original design by jbyrns](https://www.thingiverse.com/thing:4664558)
