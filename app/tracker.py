@@ -121,13 +121,17 @@ def homeAZEL():
     current_az_pos = 0
     return redirect(request.referrer)
 
+global moving 
+moving = False
 @app.route('/moveTo')
 def moveTo():
     global current_az_pos
     global current_el_pos
     global tracking_thread
+    global moving 
 
-    if tracking_thread == None:
+    if tracking_thread == None and moving == False:
+      moving = True
       desired_az_pos = int(request.args.get('az',default=current_az_pos))
       desired_el_pos = int(request.args.get('el',default=current_el_pos))
       az_steps, az_direction = az_deg_to_steps_dir(desired_az_pos)
@@ -137,9 +141,10 @@ def moveTo():
         current_az_pos = desired_az_pos
       if el_steps > 0:
           current_el_pos = desired_el_pos
+      moving = False
       return redirect(request.referrer)
     else:
-       return "cant manual move. active tracking is ongoing."
+       return "cant manual move. active tracking is ongoing. or a manual move is active"
 
 @app.route('/updateTLE')
 def updateTLE():
