@@ -23,9 +23,9 @@
 
 <form action="moveTo">
     <label for="az">Az°:</label>
-    <input type="number" id="az" name="az" min="0" max="360" value="{{current_az_pos}}">
+    <input type="number" id="az" name="az" min="0" max="360" value="{{current_az_pos|round|int}}">
     <label for="el">El°:</label>
-    <input type="number" id="el" name="el" min="0" max="90" value="{{current_el_pos}}">
+    <input type="number" id="el" name="el" min="0" max="90" value="{{current_el_pos|round|int}}">
     <input type="submit" value="Move To">
 </form><br>
 

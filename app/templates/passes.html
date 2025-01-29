@@ -63,13 +63,13 @@
           <table class="container d-flex align-items-center justify-content-center">
             <tr>
               <td>
-                  <form action="startTrack"><input type="hidden" name="sat" value="{{pass}}"><input type="hidden" name="events" value="{{passes[pass]}}"><input class="btn btn-success" type="submit" value="Track"></form>
+                  <form action="startTrack"><input type="hidden" name="sat" value="{{pass}}"><input type="hidden" name="events" value="{{passes[pass]}}"><input class="btn btn-success btn-sm" type="submit" value="Track"></form>
               </td>
               <td>
-                  <form action="https://db.satnogs.org/search/"><input type="hidden" name="q" value="{{passes_satcat[pass]}}"><input class="btn btn-secondary" type="submit" value="SatNOGS DB" formtarget="_blank"></form>
+                  <form action="https://db.satnogs.org/search/"><input type="hidden" name="q" value="{{passes_satcat[pass]}}"><input class="btn btn-secondary btn-sm" type="submit" value="SatNOGS DB" formtarget="_blank"></form>
               </td>
               <td>
-                <form action="https://www.n2yo.com/satellite/"><input type="hidden" name="s" value="{{passes_satcat[pass] | replace('U','') }}"><input class="btn btn-secondary" type="submit" value="N2YO" formtarget="_blank"></form>
+                <form action="https://www.n2yo.com/satellite/"><input type="hidden" name="s" value="{{passes_satcat[pass] | replace('U','') }}"><input class="btn btn-secondary btn-sm" type="submit" value="N2YO" formtarget="_blank"></form>
               </td>
             </tr>
           </table>

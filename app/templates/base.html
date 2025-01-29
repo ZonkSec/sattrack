@@ -109,14 +109,20 @@
 
     {% if tracking_sat_name != "" %}
     <div class="alert alert-success" role="alert">
-      Active Tracking: {{tracking_sat_name}}
+      <b>Active Tracking:</b> {{tracking_sat_name}}
       <table class="container d-flex align-items-center justify-content-center">
         <tr>
           <td>
-            <form action="killTrack"><input type="submit" value="Stop Tracking"></form>
+            <form action="track"><input class="btn btn-success btn-sm" type="submit" value="View Tracking"></form>
           </td>
           <td>
-            <form action="https://db.satnogs.org/search/"><input type="hidden" name="q" value="{{tracking_sat_cat}}"><input name="submit" type="submit" value="SatNOGS DB" formtarget="_blank"></form>
+            <form action="killTrack"><input class="btn btn-danger btn-sm" type="submit" value="Stop Tracking"></form>
+          </td>
+          <td>
+            <form action="https://db.satnogs.org/search/"><input type="hidden" name="q" value="{{tracking_sat_cat}}"><input class="btn btn-secondary btn-sm" name="submit" type="submit" value="SatNOGS DB" formtarget="_blank"></form>
+          </td>
+          <td>
+            <form action="https://www.n2yo.com/satellite/"><input type="hidden" name="s" value="{{tracking_sat_cat | replace('U','') }}"><input class="btn btn-secondary btn-sm" type="submit" value="N2YO" formtarget="_blank"></form>
           </td>
         </tr>
       </table>
