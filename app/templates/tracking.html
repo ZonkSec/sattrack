@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block track_nav %}active{% endblock %}
+{% block content %}
+
+  {% if tracking_thread == None %}
+  <h4>Start Tracking:</h4>
+  <div class="card container d-flex align-items-center justify-content-center">
+    <div class="card-body" id="currentpos">
+      <form action="passes"><input type="submit" value="View upcoming passes"></form>
+      <br><p>OR</p>
+      <form action="/startTrack" method="get">
+        <label for="sat">Manually select a Sattelite to track: </label>
+        <select name="sat" id="sat">
+          {% for sat in sat_name_list %}
+          <option value="{{sat}}">{{sat}}</option>
+          {% endfor %}
+        </select>
+        <input type="hidden" name="events" value="None. Manually Tracked.">
+        <input type="submit" value="Track">
+      </form>
+    </div>
+  </div>
+  {% else %}
+  {% if tracking_sat_events != "" %}
+  <h4>Current Position:</h4>
+  <div class="card container d-flex align-items-center justify-content-center">
+    <div class="card-body" id="currentpos"></div>
+  </div>
+  <br>
+  <h4>Pass Events:</h4>
+  <div class="card container d-flex align-items-center justify-content-center">
+    <div class="card-body" id="currentpos">
+      <p>
+      {% for event in tracking_sat_events %}
+      {{event}}<br>
+      {% endfor %}
+      </p>
+      {% endif %}
+    </div>
+  </div>
+  <script>
+    async function fetchData(url){
+      let result = '';
+      const decoder = new TextDecoder();
+      const response = await fetch(url);
+      for await (const chunk of response.body){
+          document.getElementById('currentpos').innerHTML = decoder.decode(chunk, {stream:true});
+      }
+    }
+    fetchData("/watchTracking")
+  </script>
+  {% endif %}
+
+{% endblock %}

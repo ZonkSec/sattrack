@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block pass_nav %}active{% endblock %}
+{% block content %}
+
+{% if method=="GET" %}
+<h3>Upcoming Passes: </h3>
+<form action="/passes"  method="post">
+  <div class="card container d-flex align-items-center justify-content-center">
+    <div class="card-body" id="currentpos">
+      
+          <label for="time">In the next:</label>
+          <select name="time" id="time" {% if gpsmissing %}disabled{% endif %}>
+            <option value="1">1hr</option>
+            <option value="2">2hr</option>
+            <option value="3">3hr</option>
+            <option value="4">4hr</option>
+            <option value="5">5hr</option>
+            <option value="6">6hr</option>
+            <option value="7">7hr</option>
+            <option value="8">8hr</option>
+          </select>
+          <br>
+          <label for="el">Above El:</label>
+          <select name="el" id="el" {% if gpsmissing %}disabled{% endif %}>
+            <option value="0">0°</option>
+            <option value="10">10°</option>
+            <option value="20">20°</option>
+            <option value="30" selected="selected">30°</option>
+            <option value="40">40°</option>
+            <option value="50">50°</option>
+            <option value="60">60°</option>
+            <option value="70">70°</option>
+            <option value="80">80°</option>
+          </select>
+          <br>
+          <label for="display_time">Display time as:</label>
+          <select name="display_time" id="display_time" {% if gpsmissing %}disabled{% endif %}>
+            <option value="local" selected="selected">Local</option>
+            <option value="utc">UTC</option>
+          </select>
+          <br>
+          <label for="mode">Mode:</label>
+          <select name="mode" id="mode" {% if gpsmissing %}disabled{% endif %}>
+            <option value="fm" selected="selected">FM</option>
+            <option value="ssb">SSB</option>
+            <option value="both">Both</option>
+          </select>
+      </div>
+    </div>
+  <br>
+  <input type="submit" value="View" {% if gpsmissing %}disabled{% endif %}>
+  </form>
+  {% endif %}
+  {% if method=="POST" %}
+  <form class="container d-flex align-items-left justify-content-left" action="/passes"><input type="submit" value="Back"></form>
+  <h3>Passes above {{max_el}}° in the next {{time}} hours: </h3>
+    {% if passes %}
+      {% for pass in passes %}
+      <br>
+      <div class="card container d-flex align-items-center justify-content-center">
+        <div class="card-body" id="currentpos">
+          <h5>{{ pass }}</h5>
+          <table class="container d-flex align-items-center justify-content-center">
+            <tr>
+              <td>
+                  <form action="startTrack"><input type="hidden" name="sat" value="{{pass}}"><input type="hidden" name="events" value="{{passes[pass]}}"><input class="btn btn-success" type="submit" value="Track"></form>
+              </td>
+              <td>
+                  <form action="https://db.satnogs.org/search/"><input type="hidden" name="q" value="{{passes_satcat[pass]}}"><input class="btn btn-secondary" type="submit" value="SatNOGS DB" formtarget="_blank"></form>
+              </td>
+              <td>
+                <form action="https://www.n2yo.com/satellite/"><input type="hidden" name="s" value="{{passes_satcat[pass] | replace('U','') }}"><input class="btn btn-secondary" type="submit" value="N2YO" formtarget="_blank"></form>
+              </td>
+            </tr>
+          </table>
+          <p>
+          {% for event in passes[pass] %}
+          {{event}}<br>
+          {% endfor %}
+          </p>
+        </div>
+      </div>
+      {% endfor %}
+  {% else %}
+      <p>None</p>
+  {% endif %}
+{% endif %}
+{% endblock %}
