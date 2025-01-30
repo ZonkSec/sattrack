@@ -4,7 +4,7 @@ First setup you raspberry pi as you would normally. Next move the "app" director
 
 Next install the dependies using `pip install -r requirements.txt`, you may need to use `--break-system-packages` to allow it to install the libraries to the shared system packages.
 
-While in the `/app` directory, run the application like so `python tracker.py`. If this is the first time you have run, it may take a bit as it needs to generate SSL/TLS certicates so that the website can operated via HTTPS.
+While in the `/app` directory, run the application like so `python tracker.py`. If this is the first time you have run, it may take a bit as it needs to generate SSL/TLS certicates so that the website can operated via HTTPS. HTTPS is required to get location/time data from the browser, which the application uses for predictions. 
 
 You should get output like this when the server is up and running:
 ```
