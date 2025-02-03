@@ -398,7 +398,7 @@ el_a4988_nema = RpiMotorLib.A4988Nema(el_direction_pin, el_step_pin, el_mode_pin
 steps_per_azDeg = 13760/360
 
 #full steps per rot = 200
-#half stepping steps per rot = 800
+#1/4 stepping steps per rot = 800
 #el gears 1:30
 #el quater stepping full rotate steps = 24000
 #el degs to steps = 24000 / 360 = 5.5555
@@ -406,7 +406,7 @@ steps_per_elDeg = 24000 / 360
 
 global current_az_pos
 global current_el_pos
-current_az_pos = 0
+current_az_pos = 0 
 current_el_pos = 0
 
 
@@ -425,7 +425,7 @@ buzz(196*2,0.2)
 def thread_move_steps(az_direction,az_steps,el_direction,el_steps):
   with concurrent.futures.ThreadPoolExecutor() as executor:
           az_steptype = "1/16"
-          az_stepdelay = 0.0008
+          az_stepdelay = 0.001
           az_initialdelay = 0.05
           el_steptype = "1/4"
           el_stepdelay = 0.0005
@@ -593,19 +593,14 @@ def tracker(requested_sat):
   sat_status = "unknown"
   last_sat_status = "unknown"
   while True and not stop_tracking:
-      print("sat_status:" + sat_status)
-      if float(current_el_pos) > 0:
-         sat_status = "up"
+      #let first move settle before next move
+      if sat_status == "unknown":
+         loop_sleep = 1
       else:
-         sat_status = "down"
-      
-      if sat_status == "up" and last_sat_status not in ["up"]:
-        buzz(1000,0.1)
-        buzz(500,0.1)
-        buzz(1000,0.1)
-         
+         loop_sleep = 4
+
       difference = sat_to_track - location
-      topocentric = difference.at(ts.utc(ts.now().utc_datetime() + timedelta(seconds=2))) #lead the sat a bit
+      topocentric = difference.at(ts.utc(ts.now().utc_datetime() + timedelta(seconds=5))) #lead the sat a bit 
       alt, az, distance = topocentric.altaz()
       print(f'AZ:{az}, EL:{alt}')
       tracking_sat_pos = f'AZ: {az}, EL: {alt}<br>'.replace("deg","°")
@@ -625,9 +620,18 @@ def tracker(requested_sat):
         current_az_pos = desired_az_pos
       if el_steps > 0:
         current_el_pos = desired_el_pos
-      
+
+      print("sat_status:" + sat_status)
+      if float(current_el_pos) > 0:
+         sat_status = "up"
+      else:
+         sat_status = "down"
+      if sat_status == "up" and last_sat_status not in ["up"]:
+        buzz(1000,0.1)
+        buzz(500,0.1)
+        buzz(1000,0.1)
       last_sat_status = sat_status
-      sleep(.0005)
+      sleep(loop_sleep)
 
 def manual_move():
    global current_az_pos
