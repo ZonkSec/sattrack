@@ -4,6 +4,7 @@ DIY Satellite Tracker for Ham Radio
 * improved 3D printed parts | [original design by jbyrns](https://www.thingiverse.com/thing:4664558)
 * Nema 17 Motors
 * on-board tracking software and battery
+  * doubles as a counter weight; fewer wires to get tangled 
   * rasperby pi zero
   * custom pcb for:
     * A4988 Stepper Drivers
