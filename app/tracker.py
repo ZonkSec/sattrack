@@ -425,7 +425,7 @@ buzz(196*2,0.2)
 def thread_move_steps(az_direction,az_steps,el_direction,el_steps):
   with concurrent.futures.ThreadPoolExecutor() as executor:
           az_steptype = "1/16"
-          az_stepdelay = 0.001
+          az_stepdelay = 0.0015
           az_initialdelay = 0.05
           el_steptype = "1/4"
           el_stepdelay = 0.0005
