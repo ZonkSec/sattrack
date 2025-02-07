@@ -24,6 +24,7 @@ Each category contains it's own readme.md with more details.
 
  ## Images
 <img src="images/front.jpg" width="50%" ><img src="images/back.jpg" width="50%" >
+<img src="/images/electronics.jpg" width="50%" ><img src="/images/electronics_top.jpg" width="50%" >
 
 <div align="center">
  <img src="/images/pcb.PNG" width="50%" >
