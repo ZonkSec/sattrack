@@ -10,14 +10,6 @@
 <p><b>Local Time Offset from Browser:</b> Not Set. Set GPS to detect.</p>
 {% endif %}
 
-<form action="/getGPS"><input type="submit" value="Update GPS Location"></form><br>
-<form action="/homeAZEL"><input type="submit" value="Home Az and El"></form><br>
-
-<form action="/view"><input type="hidden" name="file" value="fmsattxt"><input type="submit" value="View FM satelite.txt"></form>
-<form action="/view"><input type="hidden" name="file" value="ssbsattxt"><input type="submit" value="View SSB satelite.txt"></form>
-<form action="/view"><input type="hidden" name="file" value="tle"><input type="submit" value="View TLE Data"></form>
-<form action="/updateTLE"><input type="submit" value="Make/Update TLE via CelesTrak"></form><br>
-
 <form action="motorEnable"><input type="hidden" name="enabled" value="yes"><input type="submit" value="Enable Steppers"></form>
 <form action="motorEnable"><input type="hidden" name="enabled" value="no"><input type="submit" value="Disable Steppers"></form><br>
 
@@ -29,6 +21,15 @@
     <input type="submit" value="Move To">
 </form><br>
 
+<form action="/getGPS"><input type="submit" value="Update GPS Location"></form><br>
+<form action="/homeAZEL"><input type="submit" value="Home Az and El"></form><br>
+
+<form action="/view"><input type="hidden" name="file" value="fmsattxt"><input type="submit" value="View FM satelite.txt"></form>
+<form action="/view"><input type="hidden" name="file" value="ssbsattxt"><input type="submit" value="View SSB satelite.txt"></form>
+<form action="/view"><input type="hidden" name="file" value="tle"><input type="submit" value="View TLE Data"></form>
+<form action="/updateTLE"><input type="submit" value="Make/Update TLE via CelesTrak"></form><br>
+
+<form action="/view"><input type="hidden" name="file" value="trackerlog"><input type="submit" value="View tracker.log"></form><br>
 
 <form action="shutdown" onsubmit="return confirm('Are you sure you want to shutdown?');"><input type="submit" value="Shutdown"></form>
 

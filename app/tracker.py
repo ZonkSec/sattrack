@@ -78,6 +78,12 @@ def view():
         file_content = file.read()
     except:
        file_content = "satellites.txt not found"
+  elif file == "trackerlog":
+     try:
+        with open('tracker.log', 'r') as file:
+           file_content = file.read()
+     except:
+        file_content = "tracker.log not found"
   elif file == "ssbsattxt":
     try:
       with open('data/ssb/satellites.txt', 'r') as file:
