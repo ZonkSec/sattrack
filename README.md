@@ -15,3 +15,10 @@ DIY Satellite Tracker for Ham Radio
   * satellite definitions compatible with opengd77
 
 <img src="images/front.jpg" width="50%" ><img src="images/back.jpg" width="50%" >
+
+<div align="center">
+<img src="images/1.PNG" width="50%" >
+<img src="images/2.PNG" width="50%" >
+<img src="images/3.PNG" width="50%" >
+<img src="images/4.PNG" width="50%" >
+</div>
