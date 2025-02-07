@@ -13,7 +13,16 @@ DIY Satellite Tracker for Ham Radio
     * Easy connectivity for switches and connections
   * full featured web interface
   * satellite definitions compatible with opengd77
+ 
+ ## Repo Structure
+ The repo is broken into several categories:
+ * [3d models](3d%20models) - this contains all the 3d parts, as well as hardware needed
+ * [app](app) - this contains the python application
+ * [hardware](hardware) - this contains the custom pcb
 
+Each category contains it's own readme.md with more details.
+
+ ## Images
 <img src="images/front.jpg" width="50%" ><img src="images/back.jpg" width="50%" >
 
 <div align="center">
