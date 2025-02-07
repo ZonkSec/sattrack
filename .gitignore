@@ -2,3 +2,4 @@
 app/data/celestrakTLEdata.txt
 *.pem
 app/tracker.log
+*.lck
