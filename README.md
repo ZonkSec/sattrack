@@ -17,6 +17,7 @@ DIY Satellite Tracker for Ham Radio
 <img src="images/front.jpg" width="50%" ><img src="images/back.jpg" width="50%" >
 
 <div align="center">
+ <img src="/images/pcb.PNG" width="50%" >
 <img src="images/1.PNG" width="50%" >
 <img src="images/2.PNG" width="50%" >
 <img src="images/3.PNG" width="50%" >
