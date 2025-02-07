@@ -1,6 +1,4 @@
 
 app/data/celestrakTLEdata.txt
 *.pem
-app/data/fm/filtered_TLE.txt
-app/data/ssb/filtered_TLE.txt
 app/tracker.log
