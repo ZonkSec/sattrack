@@ -21,8 +21,8 @@ You can access it via the IP address listed there. You may be able to access if 
 
 If you wan the script to start automatically with the py, run `crontab -e`. And then add the following lines:
 ```
-@reboot rm /home/pi/tracker.log
-@reboot sleep 10 && cd /home/pi/app && python tracker.py >/home/pi/tracker.log 2>&1 &
+@reboot rm /home/pi/app/tracker.log
+@reboot sleep 10 && cd /home/pi/app && python tracker.py >/home/pi/app/tracker.log 2>&1 &
 ```
 
-The second line is what runs the app. It also sets it's output to be logged to `/home/pi/tracker.log`. The first line cleans up this log at boot. So at the log will only contain output from a single run. The sleep on the second line prevents the first line from removing the current log, which happens if line 1 and 2 run at the same time.
+The second line is what runs the app. It also sets it's output to be logged to `/home/pi/app/tracker.log`. The first line cleans up this log at boot. So at the log will only contain output from a single run. The sleep on the second line prevents the first line from removing the current log, which happens if line 1 and 2 run at the same time.
