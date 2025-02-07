@@ -24,6 +24,7 @@
 
 <div align="center">
 <img src="/images/pcb.PNG" width="50%" >
+<img src="schematic.PNG">
 <img src="/images/electronics.jpg" width="75%" >
 <img src="/images/electronics_top.jpg" width="75%" >
 </div>
